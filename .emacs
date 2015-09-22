@@ -117,3 +117,7 @@
 ;; map break-point macro to C-x p
 (global-set-key [(ctrl x) (p)] 'insert_bpt)
 
+;; comment or uncomment blocks
+(global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
+
+
