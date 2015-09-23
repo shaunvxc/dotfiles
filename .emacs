@@ -6,6 +6,8 @@
 (require 'git-commit)
 (setq git-commit-fill-column-summary 72)
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+
 ;; sets the default directory as the home directory
 (setq default-directory "~/")
 
@@ -18,47 +20,52 @@
 (package-initialize) ;; You might already have this line
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(show-paren-mode t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
+(load-theme 'solarized-dark t)
 
-(set-background-color "black")
-(set-foreground-color "green")
+;; MY OLD CUSTOM SYNTAX highlighting theme
 
-;;; Set background to be transparent
-(set-frame-parameter (selected-frame) 'alpha '(85 85))
-(add-to-list 'default-frame-alist '(alpha 87 87))
+;; (set-background-color "black")
+;; (set-foreground-color "green")
+
+;; ;;; Set background to be transparent
+(set-frame-parameter (selected-frame) 'alpha '(95 95))
+(add-to-list 'default-frame-alist '(alpha 92 92))
+
+;;; syntax highlighting
+;; (set-face-foreground 'font-lock-type-face "MintCream")
+;; (set-face-foreground 'font-lock-comment-face "honeydew")
+;; (set-face-foreground 'font-lock-function-name-face "VioletRed2")
+;; (set-face-foreground 'font-lock-keyword-face "cyan")
+;; (set-face-foreground 'font-lock-string-face "deep pink")
+;; (set-face-foreground 'font-lock-variable-name-face "MediumPurple1")
+
+
+;; (set-face-background 'region "MidnightBlue")
+;; (set-face-background 'secondary-selection "dodger blue")
+;; (set-mouse-color "wheat")
+;; (set-face-foreground 'highlight "orange")
+;; (set-face-background 'highlight "blue")
+;; (set-face-foreground 'show-paren-match-face "coral")
+;; (set-face-background 'show-paren-match-face "turquoise")
+;; (set-cursor-color "Deep Pink")
 
 ;;; show line nums
 (require 'linum)
 (global-linum-mode 1)
 
-;;; syntax highlighting
-(set-face-foreground 'font-lock-type-face "MintCream")
-(set-face-foreground 'font-lock-comment-face "honeydew")
-(set-face-foreground 'font-lock-function-name-face "VioletRed2")
-(set-face-foreground 'font-lock-keyword-face "cyan")
-(set-face-foreground 'font-lock-string-face "deep pink")
-(set-face-foreground 'font-lock-variable-name-face "MediumPurple1")
-
-
-(set-face-background 'region "MidnightBlue")
-(set-face-background 'secondary-selection "dodger blue")
-(set-mouse-color "wheat")
-(set-face-foreground 'highlight "orange")
-(set-face-background 'highlight "blue")
-(set-face-foreground 'show-paren-match-face "coral")
-(set-face-background 'show-paren-match-face "turquoise")
-(set-cursor-color "Deep Pink")
 
 ;;; smooth scroll
 (setq scroll-conservatively 10000)
@@ -106,10 +113,12 @@
         (if (> trailnewlines 0)
             (progn
               (delete-char trailnewlines)))))))
+
 ;;; maps the key-binding for the above function that removes all white space
 (global-set-key [(ctrl x) (w)] 'squeeze-file)
 ;; delete selection mode
 (delete-selection-mode 1)
+
 ;;; insert break point
 (fset 'insert_bpt
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("import pdb;pdb.set_trace()" 0 "%d")) arg)))
