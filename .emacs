@@ -33,16 +33,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(load-theme 'solarized-dark t)
 
+(load-theme 'vim-colors t)
+;; (load-theme 'solarized-dark t)
+;; (load-theme 'organic-green t)
 ;; MY OLD CUSTOM SYNTAX highlighting theme
 
 ;; (set-background-color "black")
 ;; (set-foreground-color "green")
-
-;; ;;; Set background to be transparent
-(set-frame-parameter (selected-frame) 'alpha '(95 95))
-(add-to-list 'default-frame-alist '(alpha 92 92))
 
 ;;; syntax highlighting
 ;; (set-face-foreground 'font-lock-type-face "MintCream")
@@ -51,7 +49,6 @@
 ;; (set-face-foreground 'font-lock-keyword-face "cyan")
 ;; (set-face-foreground 'font-lock-string-face "deep pink")
 ;; (set-face-foreground 'font-lock-variable-name-face "MediumPurple1")
-
 
 ;; (set-face-background 'region "MidnightBlue")
 ;; (set-face-background 'secondary-selection "dodger blue")
@@ -62,10 +59,18 @@
 ;; (set-face-background 'show-paren-match-face "turquoise")
 ;; (set-cursor-color "Deep Pink")
 
+
+;; ;;; Set background to be transparent
+;;(set-frame-parameter (selected-frame) 'alpha '(100 100))
+;;(add-to-list 'default-frame-alist '(alpha 92 92))
+
 ;;; show line nums
 (require 'linum)
 (global-linum-mode 1)
 
+;; autocomplete
+(require 'auto-complete)
+(ac-config-default)
 
 ;;; smooth scroll
 (setq scroll-conservatively 10000)
