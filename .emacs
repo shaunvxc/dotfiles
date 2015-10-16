@@ -11,7 +11,7 @@
 ;; sets the default directory as the home directory
 (setq default-directory "~/")
 
-(require 'package) 
+(require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (when (< emacs-major-version 24)
@@ -25,7 +25,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(custom-safe-themes (quote ("cf08ae4c26cacce2eebff39d129ea0a21c9d7bf70ea9b945588c1c66392578d1" "e707d8881f53535f1cbbfc70d81cf5a7cd23eefe271b084bf4ff0bd21dfd0311" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -33,10 +33,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;;(load-theme 'tomorrow t)
+;;(load-theme 'tomorrow-night-bright t)
+(load-theme 'tomorrow-night-eighties t)
+;;(load-theme 'ample t)
+;;(load-theme 'ujelly t)
+;;(load-theme 'github t)
 
-(load-theme 'vim-colors t)
-;; (load-theme 'solarized-dark t)
-;; (load-theme 'organic-green t)
+
 ;; MY OLD CUSTOM SYNTAX highlighting theme
 
 ;; (set-background-color "black")
@@ -61,8 +65,8 @@
 
 
 ;; ;;; Set background to be transparent
-;;(set-frame-parameter (selected-frame) 'alpha '(100 100))
-;;(add-to-list 'default-frame-alist '(alpha 92 92))
+(set-frame-parameter (selected-frame) 'alpha '(96 96))
+;;(add-to-list 'default-frame-alist '(alpha 100 100))
 
 ;;; show line nums
 (require 'linum)
@@ -90,6 +94,7 @@
   (setq mac-option-modifier 'control) ; was alot
   (setq mac-command-modifier 'meta)
   (setq ns-function-modifier 'alt) ;fn is control -- was control
+
   (global-set-key (kbd "<home>") 'move-beginning-of-line)
   (global-set-key (kbd "<end>") 'move-end-of-line)
   ;; sets fn-delete to be right-delete
@@ -133,5 +138,4 @@
 
 ;; comment or uncomment blocks
 (global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
-
-
+(global-set-key (kbd"C-X SPC") 'pop-global-mark)
