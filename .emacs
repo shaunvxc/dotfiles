@@ -1,10 +1,18 @@
 ;; for emacs 24.3, the below is required or calls to 'loop' will throw errors
 (require 'cl)
 
+;; include the speedbar
+;;(speedbar 1)
+
+
 ;; git commit package
 (add-to-list 'load-path "~/.emacs.d")
 (require 'git-commit)
 (setq git-commit-fill-column-summary 72)
+
+(require 'sr-speedbar)
+(global-set-key [(ctrl c) (t)] 'sr-speedbar-toggle)
+
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
@@ -33,6 +41,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
 ;;(load-theme 'tomorrow t)
 ;;(load-theme 'tomorrow-night-bright t)
 (load-theme 'tomorrow-night-eighties t)
