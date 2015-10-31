@@ -1,6 +1,6 @@
 ;;; shauns-theme.el --- shaun's emacs theme
 
-;; Copyright (C) 2015 by shau nviguerie
+;; Copyright (C) 2015 by shaun nviguerie
 
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,31 +24,45 @@
 (deftheme shauns
   "shauns-theme")
 
+
 (custom-theme-set-faces
  'shauns
  
- '(default ((t (:background "#ffffff" :foreground "#000000"))))
+ '(default ((t (:background "black" :foreground "green"))))
  '(mouse ((t (:foregound "#000000"))))
+ '(fringe ((t (:background "black" :foreground "green"))))
  '(cursor ((t (:foregound "#000000"))))
  '(border ((t (:foregound "black"))))
 
+
+ '(mode-line ((t (:background "black" :foreground "green"))))
  '(Man-overstrike-face ((t (:weight bold))))
  '(Man-underline-face ((t (:underline t))))
  '(apropos-keybinding-face ((t (:underline t))))
  '(apropos-label-face ((t (:italic t))))
 
-(set-face-foreground 'font-lock-type-face "MintCream")
-(set-face-foreground 'font-lock-comment-face "honeydew")
-(set-face-foreground 'font-lock-function-name-face "VioletRed2")
-(set-face-foreground 'font-lock-keyword-face "cyan")
-(set-face-foreground 'font-lock-string-face "deep pink")
-(set-face-foreground 'font-lock-variable-name-face "MediumPurple1")
+ '(font-lock-type-face ((t (:foreground "MintCream"))))
+ '(font-lock-comment-face ((t (:foreground "light slate blue"))))
+ '(font-lock-function-name-face ((t (:foreground "VioletRed2"))))
+ '(font-lock-keyword-face ((t (:weight bold :foreground "cyan"))))
+ '(font-lock-string-face ((t (:foreground "deep pink"))))
+ '(font-lock-variable-name-face ((t (:foreground "MediumPurple1"))))
 
-(set-face-background 'region "MidnightBlue")
-(set-face-background 'secondary-selection "dodger blue")
-(set-mouse-color "wheat")
-(set-face-foreground 'highlight "orange")
-(set-face-background 'highlight "blue")
-(set-face-foreground 'show-paren-match-face "coral")
-(set-face-background 'show-paren-match-face "turquoise")
-(set-cursor-color "Deep Pink")
+ '(region ((t (:background "MidnightBlue"))))
+ '(secondary-selection ((t (:background "dodger blue"))))
+ 
+ '(mouse ((t (:foregound "wheat"))))
+ '(highlight ((t (:background "blue" :foreground "orange"))))
+ '(show-paren-match-face ((t (:background "turquoise" :foreground "coral"))))
+ '(show-paren-mismatch-face ((t (:background "purple" :foreground "white"))))
+ '(cursor ((t (:background "Deep Pink")))))
+
+ '(linum ((t (:background "black" :foreground "green"))))
+
+;;;###autoload
+(when load-file-name
+  (add-to-list 'custom-theme-load-path
+               (file-name-as-directory (file-name-directory load-file-name))))
+
+(provide-theme 'shauns)
+;;; shaun-theme.el ends here
