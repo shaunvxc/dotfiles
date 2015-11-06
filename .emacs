@@ -13,7 +13,6 @@
 (require 'sr-speedbar)
 (global-set-key [(ctrl c) (t)] 'sr-speedbar-toggle)
 
-
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;; sets the default directory as the home directory
@@ -26,6 +25,10 @@
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) ;; You might already have this line
+
+(require 'midnight)
+(midnight-delay-set 'midnight-delay "4:30am")
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -43,40 +46,12 @@
  )
 
 
-;;(load-theme 'tomorrow t)
-;;(load-theme 'tomorrow-night-bright t)
 (load-theme 'tomorrow-night-eighties t)
-;;(load-theme 'ample t)
-;;(load-theme 'ujelly t)
-;;(load-theme 'github t)
-
-
-;; MY OLD CUSTOM SYNTAX highlighting theme
-
-;; (set-background-color "black")
-;; (set-foreground-color "green")
-
-;;; syntax highlighting
-;; (set-face-foreground 'font-lock-type-face "MintCream")
-;; (set-face-foreground 'font-lock-comment-face "honeydew")
-;; (set-face-foreground 'font-lock-function-name-face "VioletRed2")
-;; (set-face-foreground 'font-lock-keyword-face "cyan")
-;; (set-face-foreground 'font-lock-string-face "deep pink")
-;; (set-face-foreground 'font-lock-variable-name-face "MediumPurple1")
-
-;; (set-face-background 'region "MidnightBlue")
-;; (set-face-background 'secondary-selection "dodger blue")
-;; (set-mouse-color "wheat")
-;; (set-face-foreground 'highlight "orange")
-;; (set-face-background 'highlight "blue")
-;; (set-face-foreground 'show-paren-match-face "coral")
-;; (set-face-background 'show-paren-match-face "turquoise")
-;; (set-cursor-color "Deep Pink")
-
+;;(load-theme 'shauns t)
 
 ;; ;;; Set background to be transparent
 (set-frame-parameter (selected-frame) 'alpha '(96 96))
-;;(add-to-list 'default-frame-alist '(alpha 100 100))
+(add-to-list 'default-frame-alist '(alpha 96 96))
 
 ;;; show line nums
 (require 'linum)
