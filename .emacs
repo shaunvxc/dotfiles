@@ -64,6 +64,11 @@
 ;;; smooth scroll
 (setq scroll-conservatively 10000)
 
+;; prevent mouse scrolling from sucking ass
+(setq mouse-wheel-scroll-amount '(0.07))
+(setq mouse-wheel-progressive-speed nil)
+(setq ring-bell-function 'ignore)
+
 ;;; Nice size for the default window
 (defun get-default-height ()
        (/ (- (display-pixel-height) 120)
