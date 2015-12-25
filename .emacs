@@ -15,9 +15,6 @@
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
-;; sets the default directory as the home directory
-(setq default-directory "~/")
-
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
@@ -37,6 +34,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(custom-safe-themes (quote ("cf08ae4c26cacce2eebff39d129ea0a21c9d7bf70ea9b945588c1c66392578d1" "e707d8881f53535f1cbbfc70d81cf5a7cd23eefe271b084bf4ff0bd21dfd0311" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(inhibit-startup-screen nil)
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -68,6 +66,13 @@
 (setq mouse-wheel-scroll-amount '(0.07))
 (setq mouse-wheel-progressive-speed nil)
 (setq ring-bell-function 'ignore)
+
+
+;; Emacs will not automatically add new lines
+(setq next-line-add-newlines nil)
+
+;; prevent too much line wrapping...
+'(fill-column 1000)
 
 ;;; Nice size for the default window
 (defun get-default-height ()
@@ -129,3 +134,24 @@
 ;; comment or uncomment blocks
 (global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
 (global-set-key (kbd"C-X SPC") 'pop-global-mark)
+
+;; keybinding for arrows
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+;; sets the default directory as the home directory
+(getenv "HOME")
+(setq default-directory "~/")
+(cd "~/Development/")
+
+;; (global-set-key (kbd "C-x C-f") 'my-find-file)
+;; (defun my-find-file ()
+;;   "force a starting path"
+;;   (interactive)
+;;   (let ((default-directory "~/"))
+;;     (call-interactively 'find-file)))
+
+
+(autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
+(setq auto-mode-alist
+      (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
