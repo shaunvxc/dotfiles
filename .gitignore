@@ -1,6 +1,8 @@
-games/
+games
+eshell
 auto-save-list
 bookmarks
 ac-comphist.dat
 url
-.emacs.d/elpa/archives/*
+.emacs.d/elpa/archives
+.emacs.d/elpa/w3*
