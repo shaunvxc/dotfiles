@@ -135,6 +135,11 @@
 (global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
 (global-set-key (kbd"C-X SPC") 'pop-global-mark)
 
+(fset 'fix_cs_braces
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 123 67108896 18 41 right backspace 32 right 5 down] 0 "%d")) arg)))
+
+(global-set-key [(ctrl c) (f)] 'fix_cs_braces)
+
 ;; keybinding for arrows
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
