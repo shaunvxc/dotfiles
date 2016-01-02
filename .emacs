@@ -1,18 +1,18 @@
 ;; for emacs 24.3, the below is required or calls to 'loop' will throw errors
 (require 'cl)
 
-;; include the speedbar
-;;(speedbar 1)
-
-
 ;; git commit package
 (add-to-list 'load-path "~/.emacs.d")
 (require 'git-commit)
 (setq git-commit-fill-column-summary 72)
 
+;; speedbar package-- allows for a project explorer type pane
 (require 'sr-speedbar)
+
+;; summon the speedbar with C-c t
 (global-set-key [(ctrl c) (t)] 'sr-speedbar-toggle)
 
+;; any syntax highlight theme lives here..
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 (require 'package)
@@ -43,9 +43,8 @@
  ;; If there is more than one, they won't work right.
  )
 
-
+;; favorite theme I've found so far
 (load-theme 'tomorrow-night-eighties t)
-;;(load-theme 'shauns t)
 
 ;; ;;; Set background to be transparent
 (set-frame-parameter (selected-frame) 'alpha '(96 96))
@@ -65,8 +64,9 @@
 ;; prevent mouse scrolling from sucking ass
 (setq mouse-wheel-scroll-amount '(0.07))
 (setq mouse-wheel-progressive-speed nil)
-(setq ring-bell-function 'ignore)
 
+;; turn the friggan beep noise off!
+(setq ring-bell-function 'ignore)
 
 ;; Emacs will not automatically add new lines
 (setq next-line-add-newlines nil)
@@ -92,7 +92,7 @@
 
   (global-set-key (kbd "<home>") 'move-beginning-of-line)
   (global-set-key (kbd "<end>") 'move-end-of-line)
-  ;; sets fn-delete to be right-delete
+   ;; sets fn-delete to be right-delete
   (global-set-key [kp-delete] 'delete-char))
 
 ; other window
@@ -100,12 +100,13 @@
 
 (global-auto-revert-mode t)
 
+;; remove errant white space at the ends of file
 (defun squeeze-file ()
   (interactive)
   (delete-trailing-whitespace)
   (delete-trailing-blank-lines))
 
-
+;; remove any whitespace at the ends of lines
 (defun delete-trailing-blank-lines ()
   "Deletes all blank lines at the end of the file, even the last one"
   (interactive)
@@ -121,6 +122,7 @@
 
 ;;; maps the key-binding for the above function that removes all white space
 (global-set-key [(ctrl x) (w)] 'squeeze-file)
+
 ;; delete selection mode
 (delete-selection-mode 1)
 
@@ -135,29 +137,26 @@
 (global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
 (global-set-key (kbd"C-X SPC") 'pop-global-mark)
 
+;; function to fix brace alignment in c# mode
 (fset 'fix_cs_braces
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 123 67108896 18 41 right backspace 32 right 5 down] 0 "%d")) arg)))
 
+;; map curly brace alignment macro to C-c f
 (global-set-key [(ctrl c) (f)] 'fix_cs_braces)
 
 ;; keybinding for arrows
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-;; sets the default directory as the home directory
+;; sets the default directory as the home directory-- this doesn't fucking work.
 (getenv "HOME")
 (setq default-directory "~/")
 (cd "~/Development/")
 
-;; (global-set-key (kbd "C-x C-f") 'my-find-file)
-;; (defun my-find-file ()
-;;   "force a starting path"
-;;   (interactive)
-;;   (let ((default-directory "~/"))
-;;     (call-interactively 'find-file)))
-
-
+;; syntax highlighting for c#
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (setq auto-mode-alist
       (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
+
+;; allow narrowing
 (put 'narrow-to-region 'disabled nil)
