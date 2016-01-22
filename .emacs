@@ -1,6 +1,23 @@
 ;; for emacs 24.3, the below is required or calls to 'loop' will throw errors
 (require 'cl)
 
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+   'package-archives
+   '("melpa" . "http://melpa.org/packages/")
+   t)
+  (package-initialize))
+
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;              '("melpa" . "http://melpa.org/packages/") t)
+
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
+
 ;; git commit package
 (add-to-list 'load-path "~/.emacs.d")
 (require 'git-commit)
@@ -9,19 +26,12 @@
 ;; speedbar package-- allows for a project explorer type pane
 (require 'sr-speedbar)
 
+
 ;; summon the speedbar with C-c t
 (global-set-key [(ctrl c) (t)] 'sr-speedbar-toggle)
 
 ;; any syntax highlight theme lives here..
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize) ;; You might already have this line
 
 (require 'midnight)
 (midnight-delay-set 'midnight-delay "4:30am")
