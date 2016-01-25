@@ -172,9 +172,9 @@
 (put 'narrow-to-region 'disabled nil)
 
 (fset 'toggle-pdb
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([19 112 100 98 59 112 100 98 1 67108896 5 3 99 5 down 1] 0 "%d")) arg)))
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([19 112 100 98 59 112 100 98 right 1 67108896 5 134217848 99 111 109 109 101 110 116 tab 111 114 tab return 5 down up down 1] 0 "%d")) arg)))
 
 (fset 'toggle-all-pdb
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217831 134217831 49 return 134217777 48 48 48 48 48 134217848 116 111 103 tab 112 100 tab return 1 1 1] 0 "%d")) arg)))
+    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217831 134217831 49 return 134217777 48 48 48 48 48 134217848 116 111 103 tab 112 100 tab return 1 1 1] 0 "%d")) arg)))
 
 (global-set-key [(ctrl x) (t)] 'toggle-all-pdb)
