@@ -92,6 +92,13 @@
 (add-to-list 'default-frame-alist '(width . 140))
 (add-to-list 'default-frame-alist (cons 'height (get-default-height)))
 
+;; markdown mode
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 ;;; hide toolbar
 (tool-bar-mode -1)
 
