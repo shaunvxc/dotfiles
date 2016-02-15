@@ -19,12 +19,15 @@
 (package-initialize) ;; You might already have this line
 
 ;; git commit package
-(add-to-list 'load-path "~/.emacs.d")
-(require 'git-commit)
-(setq git-commit-fill-column-summary 72)
+(add-to-list 'load-path "~/.emacs.d/elisp")
+;; (require 'git-commit)
+;; (setq git-commit-fill-column-summary 72)
 
 ;; speedbar package-- allows for a project explorer type pane
 (require 'sr-speedbar)
+
+;; magit status map
+(global-set-key (kbd "C-x g") 'magit-status)
 
 
 ;; summon the speedbar with C-c t
