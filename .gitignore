@@ -6,3 +6,4 @@ ac-comphist.dat
 url
 .emacs.d/elpa/archives
 .emacs.d/elpa/w3*
+*.el~
