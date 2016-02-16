@@ -20,15 +20,12 @@
 
 ;; git commit package
 (add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/elpa/")
 ;; (require 'git-commit)
 ;; (setq git-commit-fill-column-summary 72)
 
 ;; speedbar package-- allows for a project explorer type pane
 (require 'sr-speedbar)
-
-;; magit status map
-(global-set-key (kbd "C-x g") 'magit-status)
-
 
 ;; summon the speedbar with C-c t
 (global-set-key [(ctrl c) (t)] 'sr-speedbar-toggle)
