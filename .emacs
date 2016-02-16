@@ -188,3 +188,27 @@
     (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217831 134217831 49 return 134217777 48 48 48 48 48 134217848 116 111 103 tab 112 100 tab return 1 1 1] 0 "%d")) arg)))
 
 (global-set-key [(ctrl x) (t)] 'toggle-all-pdb)
+
+;; magit configs
+(require 'magit)
+;; magit status map
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+(global-set-key (kbd "C-x M-l") 'magit-log)
+
+;; (require 'magit-gh-pulls)
+;; (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+
+(setq split-height-threshold 100)
+(setq split-width-threshold 80)
+
+(defun split-window-prefer-vertically (window)
+  "If there's only one window (excluding any possibly active
+         minibuffer), then split the current window vertically."
+  (if (and (one-window-p t)
+	   (not (active-minibuffer-window)))
+      (let ((split-width-threshold nil))
+	(split-window-sensibly window))
+    (split-window-sensibly window)))
+
+(setq split-window-preferred-function 'split-window-prefer-vertically)
