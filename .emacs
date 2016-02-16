@@ -196,8 +196,8 @@
 ;; (require 'magit-gh-pulls)
 ;; (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
-(setq split-height-threshold 100)
-(setq split-width-threshold 80)
+(setq split-height-threshold 80)
+(setq split-width-threshold 100)
 
 (defun split-window-prefer-vertically (window)
   "If there's only one window (excluding any possibly active
