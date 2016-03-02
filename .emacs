@@ -36,6 +36,8 @@
 (require 'midnight)
 (midnight-delay-set 'midnight-delay "4:30am")
 
+;; unset the annoying minimize keybinding
+(global-unset-key (kbd "C-z"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
