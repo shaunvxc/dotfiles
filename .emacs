@@ -166,6 +166,9 @@
 ;; map curly brace alignment macro to C-c f
 (global-set-key [(ctrl c) (f)] 'fix_cs_braces)
 
+;; ansi-term should run bash by default
+(setq explicit-shell-file-name "/bin/bash")
+
 ;; keybinding for arrows
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
