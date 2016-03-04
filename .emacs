@@ -86,13 +86,16 @@
 ;; prevent too much line wrapping...
 '(fill-column 1000)
 
-;;; Nice size for the default window
-(defun get-default-height ()
-       (/ (- (display-pixel-height) 120)
-          (frame-char-height)))
+;; Start maximised (cross-platf)
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
-(add-to-list 'default-frame-alist '(width . 140))
-(add-to-list 'default-frame-alist (cons 'height (get-default-height)))
+;; ;;; Nice size for the default window
+;; (defun get-default-height ()
+;;        (/ (- (display-pixel-height) 120)
+;;           (frame-char-height)))
+
+;; (add-to-list 'default-frame-alist '(width . 140))
+;; (add-to-list 'default-frame-alist (cons 'height (get-default-height)))
 
 ;; markdown mode
 (autoload 'markdown-mode "markdown-mode"
