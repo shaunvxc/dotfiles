@@ -242,3 +242,6 @@
 (add-to-list 'display-buffer-alist
                  '(".*COMMIT_EDITMSG". ((display-buffer-pop-up-window) .
                                         ((inhibit-same-window . t)))))
+
+;; font for all unicode characters
+(set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
