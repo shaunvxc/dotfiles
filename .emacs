@@ -59,8 +59,8 @@
 ;;(load-theme 'tomorrow-night-eighties t)
 (load-theme 'dark-mint t)
 ;; ;;; Set background to be transparent
-(set-frame-parameter (selected-frame) 'alpha '(96 96))
-(add-to-list 'default-frame-alist '(alpha 96 96))
+;; (set-frame-parameter (selected-frame) 'alpha '(90 90))
+;; (add-to-list 'default-frame-alist '(alpha 85 85))
 
 ;;; show line nums
 (require 'linum)
