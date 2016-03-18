@@ -100,6 +100,9 @@
 (global-set-key (kbd "C-x o") 'helm-occur)
 (global-set-key (kbd "C-s") 'helm-occur)
 
+;;re-bind isearch-forward (because C-s is bound to 'helm-occur now)
+(global-set-key (kbd "C-c s") 'isearch-forward)
+
 ;;; smooth scroll
 (setq scroll-conservatively 10000)
 
