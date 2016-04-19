@@ -38,6 +38,7 @@
 
 ;; unset the annoying minimize keybinding
 (global-set-key (kbd "C-x C-z") nil)
+(global-set-key (kbd "C-z") nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
