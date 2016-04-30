@@ -67,9 +67,14 @@
 (require 'linum)
 (global-linum-mode 1)
 
-;; autocomplete
-(require 'auto-complete)
-(ac-config-default)
+;; autocomplete using company package
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+;; (add-to-list 'company-backends 'company-jedi)
+
+;; flycheck
+(require 'flycheck)
+(global-flycheck-mode)
 
 ;; use emacs helm
 (require 'helm)
