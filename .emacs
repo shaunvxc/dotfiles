@@ -323,5 +323,8 @@
 
 (setq tramp-default-method "ssh")
 
+;; use find-file-in-project
+(global-set-key (kbd "C-x f") 'find-file-in-project)
+
 (provide '.emacs)
 ;;; .emacs ends here
