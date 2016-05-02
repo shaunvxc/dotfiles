@@ -212,11 +212,6 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-;; sets the default directory as the home directory-- this doesn't fucking work.
-(getenv "HOME")
-(setq default-directory "~/")
-(cd "~/Development/")
-
 ;; syntax highlighting for c#
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (setq auto-mode-alist
