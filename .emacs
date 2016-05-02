@@ -240,25 +240,22 @@
 (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
 
-;; (setq magit-display-buffer-function
-;;       (lambda (buffer)
-;;         (display-buffer
-;;          buffer (if (and (derived-mode-p 'magit-mode)
-;;                          (memq (with-current-buffer buffer major-mode)
-;;                                '(magit-process-mode
-;;                                  magit-revision-mode
-;;                                  ;; magit-diff-mode
-;;                                  magit-stash-mode
-;;                                  magit-status-mode)))
-;;                     nil
-;;                   '(display-buffer-same-window)))))
-
-;; (setq split-height-threshold 0)
-;; (setq split-width-threshold nil)
-
-;; (setq split-height-threshold 100)
-;; (setq split-width-threshold 80)
-
+(setq magit-display-buffer-function
+      (lambda (buffer)
+        (display-buffer
+         buffer
+         (cond ((and (derived-mode-p 'magit-mode)
+                     (eq (with-current-buffer buffer major-mode)
+                         'magit-status-mode))
+                nil)
+               ((memq (with-current-buffer buffer major-mode)
+                      '(magit-process-mode
+                        magit-revision-mode
+                        magit-diff-mode
+                        magit-stash-mode))
+                nil)
+               (t
+                '(display-buffer-same-window))))))
 
 (setq split-height-threshold 80)
 (setq split-width-threshold 100)
