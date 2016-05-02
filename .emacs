@@ -318,4 +318,10 @@
   (interactive)
   (shell-command (format "etags *.%s" (or extension "el")))
   (let ((tags-revert-without-query t))  ; don't query, revert silently
-    (visit-tags-table default-directory nil)))
+    (visit-tags-table default-directory nil))
+)
+
+(setq tramp-default-method "ssh")
+
+(provide '.emacs)
+;;; .emacs ends here
