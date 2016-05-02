@@ -229,16 +229,15 @@
 
 (global-set-key [(ctrl x) (t)] 'toggle-all-pdb)
 
-;; magit configs
+(add-to-list 'load-path "~/.emacs.d/site-lisp/magit/lisp")
 (require 'magit)
-;; magit status map
+
+(with-eval-after-load 'info
+  (info-initialize)
+  (add-to-list 'Info-directory-list
+	       "~/.emacs.d/site-lisp/magit/Documentation/"))
+
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-(global-set-key (kbd "C-x M-l") 'magit-log)
-
-(require 'magit-gh-pulls)
-(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
-
 
 (setq magit-display-buffer-function
       (lambda (buffer)
@@ -256,6 +255,10 @@
                 nil)
                (t
                 '(display-buffer-same-window))))))
+
+;; Turn off PR stuff for the timebeing
+;; (require 'magit-gh-pulls)
+;; (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
 (setq split-height-threshold 80)
 (setq split-width-threshold 100)
