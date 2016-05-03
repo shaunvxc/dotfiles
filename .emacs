@@ -24,21 +24,12 @@
 ;; (require 'git-commit)
 ;; (setq git-commit-fill-column-summary 72)
 
-;; speedbar package-- allows for a project explorer type pane
-(require 'sr-speedbar)
-
-;; summon the speedbar with C-c t
-(global-set-key [(ctrl c) (t)] 'sr-speedbar-toggle)
 
 ;; any syntax highlight theme lives here..
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 (require 'midnight)
-(midnight-delay-set 'midnight-delay "4:30am")
-
-;; unset the annoying minimize keybinding
-(global-set-key (kbd "C-x C-z") nil)
-(global-set-key (kbd "C-z") nil)
+(midnight-delay-set 'midnight-delay "12:28am")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -80,15 +71,6 @@
 (require 'helm)
 (require 'helm-config)
 
-;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
@@ -99,16 +81,8 @@
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t)
 
+;; helm mode enabled
 (helm-mode 1)
-
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
-(global-set-key (kbd "C-x o") 'helm-occur)
-(global-set-key (kbd "C-s") 'helm-occur)
-
-;;re-bind isearch-forward (because C-s is bound to 'helm-occur now)
-(global-set-key (kbd "C-c s") 'isearch-forward)
 
 ;;; smooth scroll
 (setq scroll-conservatively 10000)
@@ -188,26 +162,6 @@
 ;; delete selection mode
 (delete-selection-mode 1)
 
-;;; insert break point
-(fset 'insert_bpt
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("import pdb;pdb.set_trace()" 0 "%d")) arg)))
-
-;; map break-point macro to C-x p
-(global-set-key [(ctrl x) (p)] 'insert_bpt)
-
-;; comment or uncomment blocks
-(global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
-(global-set-key (kbd"C-X SPC") 'pop-global-mark)
-
-;; function to fix brace alignment in c# mode
-(fset 'fix_cs_braces
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 123 67108896 18 41 right backspace 32 right 5 down] 0 "%d")) arg)))
-
-;; map curly brace alignment macro to C-c f
-(global-set-key [(ctrl c) (f)] 'fix_cs_braces)
-
-;; ansi-term should run bash by default
-(setq explicit-shell-file-name "/bin/bash")
 
 ;; keybinding for arrows
 (when (fboundp 'windmove-default-keybindings)
@@ -239,6 +193,7 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
+; perfect magit display config
 (setq magit-display-buffer-function
       (lambda (buffer)
         (display-buffer
@@ -255,10 +210,6 @@
                 nil)
                (t
                 '(display-buffer-same-window))))))
-
-;; Turn off PR stuff for the timebeing
-;; (require 'magit-gh-pulls)
-;; (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
 (setq split-height-threshold 80)
 (setq split-width-threshold 100)
@@ -323,8 +274,61 @@
 
 (setq tramp-default-method "ssh")
 
-;; use find-file-in-project
 (global-set-key (kbd "C-x f") 'find-file-in-project)
+
+(dumb-jump-mode)
+
+;; need to move all key bindings to the same place
+
+(global-set-key (kbd "C-c k") 'kill-this-buffer)
+(global-set-key (kbd "C-x C-l") 'toggle-truncate-lines)
+
+;; unset the annoying minimize keybindings
+(global-set-key (kbd "C-x C-z") nil)
+(global-set-key (kbd "C-z") nil)
+
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+;; helm-keybindings
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
+(global-set-key (kbd "C-x o") 'helm-occur)
+(global-set-key (kbd "C-s") 'helm-occur)
+;; re-bind isearch forward
+(global-set-key (kbd "C-c s") 'isearch-forward)
+
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+
+;; map break-point macro to C-x p
+(global-set-key [(ctrl x) (p)] 'insert_bpt)
+
+;; comment or uncomment blocks
+(global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
+(global-set-key (kbd"C-X SPC") 'pop-global-mark)
+
+;;; insert break point
+(fset 'insert_bpt
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("import pdb;pdb.set_trace()" 0 "%d")) arg)))
+
+;; function to fix brace alignment in c# mode
+(fset 'fix_cs_braces
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 123 67108896 18 41 right backspace 32 right 5 down] 0 "%d")) arg)))
+
+;; map curly brace alignment macro to C-c f
+(global-set-key [(ctrl c) (f)] 'fix_cs_braces)
+
+;; add new lines for C-n if the point is at the end of the buffer
+(setq next-line-add-newlines t)
 
 (provide '.emacs)
 ;;; .emacs ends here
