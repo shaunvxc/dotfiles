@@ -2,11 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (with-no-warnings
-;;    (require 'cl))
+(with-no-warnings
+   (require 'cl))
 
-;; (defvar package-archives)
-(require 'cl)
+(defvar package-archives)
 
 (when (>= emacs-major-version 24)
   (require 'package)
