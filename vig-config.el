@@ -215,7 +215,7 @@
                (t
                 '(display-buffer-same-window))))))
 
-(setq split-height-threshold 80)
+(setq split-height-threshold 40)
 (setq split-width-threshold 100)
 
 (defun split-window-prefer-vertically (window)
@@ -335,5 +335,10 @@
 (global-set-key (kbd "M-p") 'ace-window)
 
 (nyan-mode)
+
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 (provide '.emacs)
+
 ;;; vig-config ends here
