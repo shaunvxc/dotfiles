@@ -342,6 +342,34 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(provide '.emacs)
+;; saves buffer/frame configs
+(when (fboundp 'winner-mode)
+  (winner-mode 1))
 
+;; fns to scroll other frame
+(defun scroll-other-window-up ()
+  "Scroll the other window one line up."
+  (interactive)
+  (scroll-other-window -5)
+)
+
+(defun scroll-other-window-down ()
+  "Scroll the other window one line down."
+  (interactive)
+  (scroll-other-window 5)
+)
+
+;; good key-bindings for scrolling the other window
+(global-set-key (kbd "M-[") 'scroll-other-window-up)
+(global-set-key (kbd "M-]") 'scroll-other-window-down)
+
+;; multiple-cursors keybindings
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; toggle god-mode with C-x C-g
+(global-set-key (kbd "C-x C-g") 'god-mode)
+
+(provide '.emacs)
 ;;; vig-config ends here
