@@ -1,4 +1,4 @@
-;;; emacs-config --- my emacs config
+;;; vig-config.el -- my emacs config
 ;;; Commentary:
 ;;; Code:
 
