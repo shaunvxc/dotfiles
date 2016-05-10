@@ -318,6 +318,9 @@
 (global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
 (global-set-key (kbd"C-X SPC") 'pop-global-mark)
 
+;; bind 'dumb-jump-go to M-. (as it works a lot like 'find-tag
+(global-set-key (kbd "M-.")  'dumb-jump-go)
+
 ;;; insert break point
 (fset 'insert_bpt
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("import pdb;pdb.set_trace()" 0 "%d")) arg)))
