@@ -61,9 +61,14 @@
 ;; (set-frame-parameter (selected-frame) 'alpha '(90 90))
 ;; (add-to-list 'default-frame-alist '(alpha 85 85))
 
+
 ;;; show line nums
 (require 'linum)
 (global-linum-mode 1)
+
+;; use emacs helm
+(require 'helm)
+(require 'helm-config)
 
 ;; flycheck
 (require 'flycheck)
@@ -73,10 +78,8 @@
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; use emacs helm
-(require 'helm)
-(require 'helm-config)
-
+;; multiple cursors
+(require 'multiple-cursors)
 
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
