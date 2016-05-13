@@ -1,4 +1,4 @@
-(defconst dot-emacs (concat (getenv "HOME") "/" "vig-config.el")
+(defconst dot-emacs (concat (getenv "HOME") "/" ".vig-config.el")
     "My dot emacs file")
 
 (require 'bytecomp)
