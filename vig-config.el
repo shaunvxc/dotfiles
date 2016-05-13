@@ -240,7 +240,7 @@
 
 ;; use powerline
 (require 'powerline)
-(powerline-default-theme)
+(powerline-center-theme)
 
 ;; org mode configs
 (require 'org)
@@ -281,6 +281,7 @@
 
 (global-set-key (kbd "C-x f") 'find-file-in-project)
 
+;; dump jump
 (dumb-jump-mode)
 
 ;; need to move all key bindings to the same place
@@ -337,6 +338,7 @@
 (global-set-key "\M-`" 'other-frame)
 (global-set-key (kbd "M-p") 'ace-window)
 
+;; nyan cat
 (nyan-mode)
 
 (require 'expand-region)
