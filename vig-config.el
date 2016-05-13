@@ -360,7 +360,7 @@
 )
 
 (defun dumb-jump-go-autosave ()
-  "Scroll the other window one line down."
+  "Save before calling dump-jump-go."
   (interactive)
   (save-buffer)
   (dumb-jump-go)
