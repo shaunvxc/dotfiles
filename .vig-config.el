@@ -341,6 +341,9 @@
 ;; nyan cat
 (nyan-mode)
 
+;; gotta have the undo tree
+(global-undo-tree-mode 1)
+
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
