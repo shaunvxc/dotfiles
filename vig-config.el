@@ -321,9 +321,6 @@
 (global-set-key [(ctrl c) (c)] 'comment-or-uncomment-region)
 (global-set-key (kbd"C-X SPC") 'pop-global-mark)
 
-;; bind 'dumb-jump-go to M-. (as it works a lot like 'find-tag
-(global-set-key (kbd "M-.")  'dumb-jump-go)
-
 ;;; insert break point
 (fset 'insert_bpt
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("import pdb;pdb.set_trace()" 0 "%d")) arg)))
@@ -361,6 +358,17 @@
   (interactive)
   (scroll-other-window 5)
 )
+
+(defun dumb-jump-go-autosave ()
+  "Scroll the other window one line down."
+  (interactive)
+  (save-buffer)
+  (dumb-jump-go)
+)
+
+;; bind 'dumb-jump-go to M-. (as it works a lot like 'find-tag
+(global-set-key (kbd "M-.")  'dumb-jump-go-autosave)
+
 
 ;; good key-bindings for scrolling the other window
 (global-set-key (kbd "M-[") 'scroll-other-window-up)
