@@ -240,7 +240,7 @@
 
 ;; use powerline
 (require 'powerline)
-(powerline-center-theme)
+(powerline-default-theme)
 
 ;; org mode configs
 (require 'org)
@@ -387,5 +387,5 @@
 ;; toggle god-mode with C-x C-g
 (global-set-key (kbd "C-x C-g") 'god-mode)
 
-(provide '.emacs)
+(provide '.vig-config)
 ;;; vig-config ends here
