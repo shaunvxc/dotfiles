@@ -369,11 +369,12 @@
   (interactive)
   (save-buffer)
   (dumb-jump-go)
+  (recenter-top-bottom)
 )
 
 ;; bind 'dumb-jump-go to M-. (as it works a lot like 'find-tag
+;; should really put inside a python hook as dumb jump does not work with c#
 (global-set-key (kbd "M-.")  'dumb-jump-go-autosave)
-
 
 ;; good key-bindings for scrolling the other window
 (global-set-key (kbd "M-[") 'scroll-other-window-up)
