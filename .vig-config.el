@@ -340,9 +340,11 @@
 
 ;; nyan cat
 (nyan-mode)
+(nyan-start-animation)
 
 ;; gotta have the undo tree
 (global-undo-tree-mode 1)
+(global-set-key (kbd "C-x C-u") 'undo-tree-visualize)
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
