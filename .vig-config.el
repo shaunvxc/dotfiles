@@ -374,6 +374,12 @@
   (recenter-top-bottom)
 )
 
+(defun goto-line-center (arg line)
+  (interactive "P\nnline: ")
+  (goto-line line)
+  (recenter-top-bottom)
+)
+
 ;; bind 'dumb-jump-go to M-. (as it works a lot like 'find-tag
 ;; should really put inside a python hook as dumb jump does not work with c#
 (global-set-key (kbd "M-.")  'dumb-jump-go-autosave)
@@ -389,6 +395,10 @@
 
 ;; toggle god-mode with C-x C-g
 (global-set-key (kbd "C-x C-g") 'god-mode)
+
+;; use goto-line center
+(global-set-key (kbd "M-g M-g") 'goto-line-center)
+
 
 (provide '.vig-config)
 ;;; vig-config ends here
