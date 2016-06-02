@@ -376,6 +376,7 @@
 
 (defun goto-line-center (arg line)
   (interactive "P\nnline: ")
+  (universal-argument)
   (goto-line line)
   (recenter-top-bottom)
 )
