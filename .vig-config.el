@@ -360,12 +360,14 @@
   (scroll-other-window -5)
 )
 
+;; rebind scroll-other-window to M-[ and M-]
 (defun scroll-other-window-down ()
   "Scroll the other window one line down."
   (interactive)
-  (scroll-other-window 5)
+  (scroll-other-window 5) ;; move by 5 lines at a time
 )
 
+;; center buffer when dumb-jumping
 (defun dumb-jump-go-autosave ()
   "Save before calling dump-jump-go."
   (interactive)
