@@ -376,7 +376,9 @@
   (recenter-top-bottom)
 )
 
+;; when jumping to a new line, automatically recenter the buffer to line being jumped to
 (defun goto-line-center (arg line)
+  "when running goto-line, also call recenter-top-bottom"
   (interactive "P\nnline: ")
   (universal-argument)
   (goto-line line)
