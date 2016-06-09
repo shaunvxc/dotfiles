@@ -385,6 +385,17 @@
   (recenter-top-bottom)
 )
 
+
+(defun json-format ()
+  "beautify json region"
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (mark) (point) "python -m json.tool" (buffer-name) t)
+    )
+)
+
+(global-set-key (kbd "C-;")  'json-format)
+
 ;; bind 'dumb-jump-go to M-. (as it works a lot like 'find-tag
 ;; should really put inside a python hook as dumb jump does not work with c#
 (global-set-key (kbd "M-.")  'dumb-jump-go-autosave)
