@@ -9,7 +9,7 @@ url
 *.el~
 *.elc
 /[^.]*
-
+.virtualenvs/*
 .mitmproxy/
 .envies/
 .gitconfig
