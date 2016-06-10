@@ -9,6 +9,8 @@ url
 *.el~
 *.elc
 /[^.]*
+src
+src/*
 .virtualenvs/*
 .mitmproxy/
 .envies/
