@@ -307,8 +307,7 @@
 (global-set-key (kbd "C-x o") 'helm-occur)
 (global-set-key (kbd "C-s") 'helm-occur)
 ;; re-bind isearch forward
-(global-set-key (kbd "C-c s") 'isearch-forward)
-
+(global-set-key (kbd "C-;") 'isearch-forward)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
@@ -394,7 +393,7 @@
     )
 )
 
-(global-set-key (kbd "C-;")  'json-format)
+;; (global-set-key (kbd "C-;")  'json-format)
 
 (defun toggle-window-split ()
   ;; toggles a split from horizontal to vertical and vice-versa
