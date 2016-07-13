@@ -123,27 +123,6 @@
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
 (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 
-;; TODO -- REMOVE THIS!! using helm-swoop now.
-;; (defvar my-helm-follow-sources ()
-;;   "List of sources for which helm-follow-mode should be enabled")
-
-;; ;; Use helm-follow-mode for the following sources:
-;; (add-to-list 'my-helm-follow-sources 'helm-source-occur)
-
-;; (defun my-helm-set-follow ()
-;;   "Enable helm-follow-mode for the sources specified in the list
-;; variable `my-helm-follow-sources'. This function is meant to
-;; be run during `helm-initialize' and should be added to the hook
-;; `helm-before-initialize-hook'."
-;;   (mapc (lambda (source)
-;;           (when (memq source my-helm-follow-sources)
-;;             (helm-attrset 'follow 1 (symbol-value source))))
-;;         helm-sources))
-
-;; ;; Add hook to enable helm-follow mode for specified helm
-;; (add-hook 'helm-before-initialize-hook 'my-helm-set-follow)
-
-
 ;;; smooth scroll
 (setq scroll-conservatively 10000)
 
