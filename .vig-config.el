@@ -26,6 +26,9 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/")
 (add-to-list 'load-path "~/.emacs.d/elpa/company-20160429.1339")
 
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
+
 ;; any syntax highlight theme lives here..
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
@@ -66,10 +69,6 @@
 (require 'linum)
 (global-linum-mode 1)
 
-;; use emacs helm
-(require 'helm)
-(require 'helm-config)
-
 ;; flycheck
 (require 'flycheck)
 (global-flycheck-mode)
@@ -81,8 +80,10 @@
 ;; multiple cursors
 (require 'multiple-cursors)
 
-(when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
+;; =================== HELM ===================
+(require 'helm)
+(require 'helm-config)
+(require 'helm-swoop)
 
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
@@ -90,8 +91,58 @@
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t)
 
-;; helm mode enabled
 (helm-mode 1)
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+;; Change keybinds to whatever you like :)
+(global-set-key (kbd "C-s") 'helm-swoop)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+(global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+(global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
+
+(setq helm-swoop-split-direction 'split-window-vertically)
+(setq helm-swoop-split-with-multiple-windows 't)
+
+(define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
+(define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
+(global-set-key (kbd "C-x o") 'helm-occur)
+
+;; re-bind isearch forward
+(global-set-key (kbd "C-;") 'isearch-forward)
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+;; TODO -- REMOVE THIS!! using helm-swoop now.
+;; (defvar my-helm-follow-sources ()
+;;   "List of sources for which helm-follow-mode should be enabled")
+
+;; ;; Use helm-follow-mode for the following sources:
+;; (add-to-list 'my-helm-follow-sources 'helm-source-occur)
+
+;; (defun my-helm-set-follow ()
+;;   "Enable helm-follow-mode for the sources specified in the list
+;; variable `my-helm-follow-sources'. This function is meant to
+;; be run during `helm-initialize' and should be added to the hook
+;; `helm-before-initialize-hook'."
+;;   (mapc (lambda (source)
+;;           (when (memq source my-helm-follow-sources)
+;;             (helm-attrset 'follow 1 (symbol-value source))))
+;;         helm-sources))
+
+;; ;; Add hook to enable helm-follow mode for specified helm
+;; (add-hook 'helm-before-initialize-hook 'my-helm-set-follow)
+
 
 ;;; smooth scroll
 (setq scroll-conservatively 10000)
@@ -191,6 +242,8 @@
 (global-set-key [(ctrl x) (t)] 'toggle-all-pdb)
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/magit/lisp")
+
+;;=================== MAGIT ===================
 (require 'magit)
 
 (with-eval-after-load 'info
@@ -238,25 +291,28 @@
 ;; font for all unicode characters
 (set-fontset-font t 'unicode "Apple Color Emoji" nil 'prepend)
 
+;; =================== MODELINE ===================
+
 ;; use powerline
 (require 'powerline)
 (powerline-default-theme)
 
+;; nyan cat
+(nyan-mode)
+(nyan-start-animation)
+
+;; =================== ORG-MODE ===================
 ;; org mode configs
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-
 (setq tramp-default-method "ssh")
 
+
+;; =================== RANDOM KEY BINDINGS ===================
 (global-set-key (kbd "C-x f") 'find-file-in-project)
-
-;; dump jump
-(dumb-jump-mode)
-
-;; need to move all key bindings to the same place
 
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
 (global-set-key (kbd "C-x C-l") 'toggle-truncate-lines)
@@ -264,27 +320,6 @@
 ;; unset the annoying minimize keybindings
 (global-set-key (kbd "C-x C-z") nil)
 (global-set-key (kbd "C-z") nil)
-
-
-;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-
-;; helm-keybindings
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
-(global-set-key (kbd "C-x o") 'helm-occur)
-(global-set-key (kbd "C-s") 'helm-occur)
-;; re-bind isearch forward
-(global-set-key (kbd "C-;") 'isearch-forward)
-
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
 
 ;; map break-point macro to C-x p
 (global-set-key [(ctrl x) (p)] 'insert_bpt)
@@ -309,9 +344,6 @@
 (global-set-key "\M-`" 'other-frame)
 (global-set-key (kbd "M-p") 'ace-window)
 
-;; nyan cat
-(nyan-mode)
-(nyan-start-animation)
 
 ;; gotta have the undo tree
 (global-undo-tree-mode 1)
@@ -337,6 +369,9 @@
   (interactive)
   (scroll-other-window 5) ;; move by 5 lines at a time
 )
+
+;; dumb jump
+(dumb-jump-mode)
 
 ;; center buffer when dumb-jumping
 (defun dumb-jump-go-autosave ()
@@ -365,8 +400,7 @@
     )
 )
 
-;; (global-set-key (kbd "C-;")  'json-format)
-
+;; (global-set-key (kbd "C-;")  'json-format) -- this was a bad idea
 
 (defun rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
@@ -382,7 +416,6 @@
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
-
 
 
 (defun toggle-window-split ()
@@ -426,12 +459,8 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; toggle god-mode with C-x C-g
-(global-set-key (kbd "C-x C-g") 'god-mode)
-
 ;; use goto-line center
 (global-set-key (kbd "M-g M-g") 'goto-line-center)
-
 
 (provide '.vig-config)
 ;;; vig-config ends here
